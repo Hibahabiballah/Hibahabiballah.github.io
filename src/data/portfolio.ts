@@ -5,7 +5,6 @@ export interface Profile {
   role: string
   institution: string
   location: string
-  headline: string
   introduction: string
   about: string[]
   facts: { label: string; value: string }[]
@@ -23,14 +22,13 @@ export interface Project {
   status?: string; image?: ImageAsset; repository?: string; details?: string; results?: string
 }
 export interface TimelineEntry {
-  logo?: ImageAsset
-  title: string; organization: string; period: string; description: string; domain?: string
+  title: string; organization: string; period?: string; description: string; domain?: string
 }
 export interface SkillGroup { title: string; skills: string[] }
 export interface Achievement { title: string; description: string }
 
 const institution = 'Euromed University of Fez'
-const degreeSchool = institution + ' — School of Digital Engineering and Artificial Intelligence'
+const degreeSchool = institution + ', School of Digital Engineering and Artificial Intelligence'
 
 export const profile: Profile = {
   name: 'Hiba Habiballah',
@@ -39,10 +37,9 @@ export const profile: Profile = {
   role: 'PhD Researcher in Artificial Intelligence & Computer Vision',
   institution,
   location: 'Fez, Morocco',
-  headline: 'Advancing label-efficient learning and robust computer vision for real-world applications.',
-  introduction: 'I am a PhD researcher at Euromed University of Fez, specializing in Artificial Intelligence, Computer Vision, and label-efficient learning. My research focuses on developing self-supervised and semi-supervised learning approaches for robust plant disease detection under limited annotations and challenging real-world conditions.',
+  introduction: 'I study how computer vision can detect crop diseases when labeled images are scarce and field conditions vary. At Euromed University of Fez, I explore self-supervised and semi-supervised approaches to this problem.',
   about: [
-    'I am an Artificial Intelligence researcher and Big Data Analytics engineer with a strong interest in developing reliable and data-efficient machine learning systems.',
+    'I am a PhD researcher in Artificial Intelligence and Computer Vision at Euromed University of Fez, with an engineering background in Big Data Analytics. I study reliable and data-efficient visual recognition for precision agriculture.',
     'My doctoral research investigates self-supervised and semi-supervised learning for computer vision, particularly in settings characterized by limited labeled data, distribution shifts, and challenging acquisition conditions.',
     'My academic and professional experience spans deep learning, computer vision, predictive analytics, data engineering, and business intelligence.',
     'I am especially interested in bridging methodological AI research with practical applications and real-world challenges.',
@@ -104,36 +101,50 @@ export const projects: Project[] = [
 
 export const experience: TimelineEntry[] = [
   {
-    logo: { path: 'images/companies/totalenergies.svg', alt: 'TotalEnergies Marketing Maroc logo' },
-    organization: 'TotalEnergies Marketing Maroc', title: 'Data Analyst Intern — Final-Year Engineering Internship',
-    period: 'February 2025 – August 2025', domain: 'Business Intelligence · Multimodal Analytics',
+    organization: institution,
+    title: 'PhD Researcher in Artificial Intelligence & Computer Vision',
+    period: 'November 2025 to present',
+    domain: 'Label-Efficient Learning · Precision Agriculture',
+    description: 'Investigating self-supervised and semi-supervised learning for robust plant disease detection under limited annotations and variable field conditions.',
+  },
+  {
+    organization: 'TotalEnergies Marketing Maroc', title: 'Data Analyst Intern (Final-Year Engineering Internship)',
+    period: 'February 2025 to August 2025', domain: 'Business Intelligence · Multimodal Analytics',
     description: 'Designed Power BI dashboards for monitoring commercial KPIs and developed an intelligent brand-scoring approach based on multimodal data to support product assortment optimization, visibility analysis, and marketing decisions.',
   },
   {
-    logo: { path: 'images/companies/enosis.png', alt: 'Enosis Group logo' },
-    organization: 'Enosis Group', title: 'Data Engineering Intern', period: 'June 2024 – August 2024',
+    organization: 'Enosis Group', title: 'Data Engineering Intern', period: 'June 2024 to August 2024',
     domain: 'Data Engineering · Business Intelligence',
     description: 'Performed data-driven analyses of product performance in a manufacturing environment using Business Intelligence tools, producing visualizations and reports to support strategic decision-making.',
   },
   {
-    logo: { path: 'images/companies/technocolabs.svg', alt: 'TechnoCollabs Software logo' },
     organization: 'TechnoCollabs Software', title: 'Machine Learning Engineering Intern',
-    period: 'February 2024 – April 2024', domain: 'Supervised Learning · Classification',
+    period: 'February 2024 to April 2024', domain: 'Supervised Learning · Classification',
     description: 'Developed supervised machine learning models to predict startup outcomes using historical business data.',
+  },
+
+]
+
+export const outreach: TimelineEntry[] = [
+  {
+    organization: 'AI Rally',
+    title: 'Mentor and Jury Member',
+    domain: 'Mentorship · Evaluation',
+    description: 'Participated in mentorship and evaluation as a mentor and jury member.',
   },
 ]
 
 export const education: TimelineEntry[] = [
   {
-    organization: degreeSchool, title: 'PhD Program in Artificial Intelligence', period: 'November 2025 – 2028 (expected)',
+    organization: degreeSchool, title: 'PhD Program in Artificial Intelligence', period: 'November 2025 to 2028 (expected)',
     description: 'Self-supervised and semi-supervised learning for robust plant disease detection under limited annotations and variable field conditions.',
   },
   {
-    organization: degreeSchool, title: 'Engineering Degree in Big Data Analytics', period: 'September 2022 – June 2025',
+    organization: degreeSchool, title: 'Engineering Degree in Big Data Analytics', period: 'September 2022 to June 2025',
     description: 'Relevant coursework includes Deep Learning, Computer Vision, Advanced Statistics, Database Engineering, Business Intelligence, and Predictive Analytics.',
   },
   {
-    organization: degreeSchool, title: 'Integrated Preparatory Program', period: 'October 2020 – June 2022',
+    organization: degreeSchool, title: 'Integrated Preparatory Program', period: 'October 2020 to June 2022',
     description: 'Relevant topics include Algorithms, Python, Java, Data Structures, Web Technologies, Machine Learning, Computer Networks, and Object-Oriented Programming.',
   },
 ]
@@ -146,6 +157,5 @@ export const skillGroups: SkillGroup[] = [
 ]
 
 export const achievements: Achievement[] = [
-  { title: 'First Place — Royal Air Maroc Hackathon', description: 'Won first place in the Royal Air Maroc Hackathon.' },
-  { title: 'AI Rally — Mentor and Jury Member', description: 'Participated in mentorship and evaluation as a mentor and jury member.' },
+  { title: 'First Place at the Royal Air Maroc Hackathon', description: 'Won first place in the Royal Air Maroc Hackathon.' },
 ]

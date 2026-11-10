@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { ArrowUpRight, Code2, GraduationCap, Link2, Mail } from 'lucide-react'
-import { LazyMotion, domAnimation, m, useReducedMotion } from 'motion/react'
+import { m, useReducedMotion, type MotionProps } from 'motion/react'
 import { profile, type TimelineEntry } from '../data/portfolio'
 
 export function asset(path: string) {
@@ -19,22 +19,29 @@ export function SocialLinks() {
   ))}</ul>
 }
 
-export function Section({ id, number, label, title, children }: {
-  id: string; number: string; label: string; title: string; children: ReactNode
-}) {
+export function useReveal() {
   const reduced = useReducedMotion()
+
+  return (delay = 0): MotionProps => ({
+    initial: reduced ? false : { opacity: 0.3, y: 16 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: 'some' },
+    transition: { duration: reduced ? 0 : 0.5, delay: reduced ? 0 : delay, ease: [0.22, 0.61, 0.36, 1] },
+  })
+}
+
+export function Section({ id, number, label, title, children }: {
+  id: string; number?: string; label?: string; title: string; children: ReactNode
+}) {
+  const reveal = useReveal()
   return <section id={id} aria-labelledby={id + '-title'} tabIndex={-1} className="section">
-    <LazyMotion features={domAnimation}>
-      <m.div className="shell" initial={reduced ? false : { opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.08 }}
-        transition={{ duration: reduced ? 0 : 0.55, ease: [0.22, 0.61, 0.36, 1] }}>
-        <div className="section-heading">
-          <div className="eyebrow"><span className="section-number">{number}</span>{label}</div>
-          <h2 id={id + '-title'}>{title}</h2>
-        </div>
-        {children}
+    <div className="shell">
+      <m.div className="section-heading" {...reveal()}>
+        {(number || label) && <div className="eyebrow">{number && <span className="section-number">{number}</span>}{label}</div>}
+        <h2 id={id + '-title'}>{title}</h2>
       </m.div>
-    </LazyMotion>
+      {children}
+    </div>
   </section>
 }
 
@@ -43,18 +50,16 @@ export function Tags({ items }: { items: string[] }) {
 }
 
 export function Timeline({ entries }: { entries: TimelineEntry[] }) {
-  return <ol className="timeline">{entries.map(entry => (
-    <li key={entry.title}>
-      <p className="mono timeline-period">{entry.period}</p>
+  const reveal = useReveal()
+  return <ol className="record-list">{entries.map(entry => (
+    <m.li className="reading-entry" key={entry.title} {...reveal()}>
+      <div>{entry.period && <p className="mono timeline-period">{entry.period}</p>}</div>
       <div>
-        <div className="timeline-organization">
-          {entry.logo && <img className="company-logo" src={asset(entry.logo.path)} alt={entry.logo.alt} width={72} height={56} loading="lazy" decoding="async" />}
-          <p className="timeline-org">{entry.organization}</p>
-        </div>
         <h3>{entry.title}</h3>
+        <p className="timeline-org">{entry.organization}</p>
         <p>{entry.description}</p>
         {entry.domain && <p className="timeline-domain">{entry.domain}</p>}
       </div>
-    </li>
+    </m.li>
   ))}</ol>
 }

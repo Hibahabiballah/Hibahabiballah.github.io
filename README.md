@@ -62,10 +62,10 @@ Garet Book and Garet Heavy by Type Forward. Free webfont information is availabl
 
 ## Company logo sources
 
-Company marks identify the organizations in the experience timeline.
+These company logo assets are retained for reference.
 
 - TotalEnergies — https://totalenergies.co.za/themes/custom/butterfly_theme/logo.svg?v=1.2 (background rectangle removed).
 - Enosis Group — https://www.enosis.ma/wp-content/uploads/2026/09/enosis-green.png (transparent PNG).
 - Technocolabs — https://www.technocolabs.com/logo.svg (transparent monochrome SVG).
 
-Enosis retains its source green in both themes. The Technocolabs monochrome SVG uses purple #7c3aed as requested. Logo files and descriptive alt text are configured in the experience data.
+Enosis retains its source green in both themes. The Technocolabs monochrome SVG uses purple #7c3aed as requested.

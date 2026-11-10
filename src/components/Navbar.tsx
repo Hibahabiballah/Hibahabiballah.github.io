@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Menu, Moon, Sun, X } from 'lucide-react'
 import { profile } from '../data/portfolio'
 
-const navigation = ['Home', 'About', 'Research', 'Projects', 'Experience', 'Contact']
+const navigation = ['Home', 'About', 'Experience', 'Contact']
 type Theme = 'dark' | 'light'
 
 export function Navbar() {

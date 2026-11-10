@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowDownToLine, ArrowRight, Mail } from 'lucide-react'
+import { ArrowDown, ArrowDownToLine, Mail } from 'lucide-react'
 import { profile } from '../data/portfolio'
 import { asset, SocialLinks } from './shared'
 
@@ -37,14 +37,12 @@ export function Hero() {
       <div className="shell">
         <div className="hero-grid">
           <div className="hero-copy">
-            <p className="eyebrow"><span className="accent-dot" /> AI &amp; Computer Vision Research</p>
-            <h1 id="home-title">{profile.name.split(' ')[0]} <span>{profile.name.split(' ').slice(1).join(' ')}</span></h1>
+            <p className="eyebrow"><span className="accent-dot" /> Computer Vision · Label-Efficient Learning</p>
+            <h1 id="home-title">{profile.name}</h1>
             <p className="hero-role">{profile.role}</p>
-            <p className="hero-headline">{profile.headline}</p>
             <p className="hero-intro">{profile.introduction}</p>
             <div className="hero-actions flex flex-wrap gap-3">
-              <a className="button primary" href="#research">Explore My Research <ArrowDown size={16} /></a>
-              <a className="button secondary" href="#projects">View Projects <ArrowRight size={16} /></a>
+              <a className="button primary" href="#experience">Explore My Research <ArrowDown size={16} /></a>
               {profile.cv
                 ? <a className="button quiet" href={asset(profile.cv)} download>Download CV <ArrowDownToLine size={16} /></a>
                 : <a className="button quiet" href={'mailto:' + profile.email + '?subject=CV%20request'}>Request CV <Mail size={16} /></a>}
